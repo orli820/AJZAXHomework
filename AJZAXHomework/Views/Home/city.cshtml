@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "city";
+}
+
+<h1>city</h1>
+
+<select id="sel1"></select>
+<select id="sel2"></select>
+<select id="sel3"></select>
+
+@section Scripts{ 
+    <script>
+    const sel1 = document.querySelector("#sel1")
+    const sel2 = document.querySelector("#sel2")
+    const sel3 = document.querySelector("#sel3")
+    const all = [sel1, sel2, sel3]
+
+    async function theCity() {
+        let response = await fetch("@Url.Content("~/api/city")")
+        let data = await response.json()
+        data.forEach(city => {
+            const opt =new Option(city, city)
+            sel1.options.add(opt)
+        })
+    }
+
+
+        sel1.addEventListener("change", async () => {
+            let response = await fetch("@Url.Content("~/api/site")" + `?city=${sel1.options[sel1.selectedIndex].value}`)
+            let data = await response.json()
+            sel2.options.length = 0
+            data.forEach(site => {
+                const opt = new Option(site, site)
+
+                sel2.options.add(opt)
+            })
+
+        })
+
+        sel2.addEventListener("change", async () => {
+            let response = await fetch("@Url.Content("~/api/road")" + `?site=${sel2.options[sel2.selectedIndex].value}`)
+            let data = await response.json()
+            sel3.options.length = 0
+            data.forEach(road => {
+                const opt = new Option(road, road)
+
+                sel3.options.add(opt)
+            })
+
+        })
+
+    theCity();
+
+    </script>
+}

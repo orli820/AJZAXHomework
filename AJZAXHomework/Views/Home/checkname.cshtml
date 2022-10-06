@@ -52,7 +52,7 @@
     name.addEventListener("blur", async () => {
         let response = await fetch("@Url.Content("/api/checkname")" + `?name=${name.value}`)
         let data = await response.text()
-        console.log(data)
+        /*console.log(data)*/
         if (data=="True")
            data="該帳號已存在"
         else
@@ -60,37 +60,17 @@
 
         message.textContent = data
     })
-    /*let a = "";*/
-    //function test() {
-    //    if (input == "")
-    //        return "本欄不可空白"
-    //}
-    //input.forEach(a => {
-    //    let datas=""
-    //    a.addEventListener("blur", () => {
-    //        //let respones = await fetch(test())
-    //        //let data = await respones.text()
-    //        if (input == "") {
-    //            datas = "本欄不可空白"
-    //            alert2.forEach(b => b.textContent = datas)
-    //        }
-    //    })
-
-    //})
-    console.log(input.length)
-
+    
+    /*console.log(input.length)*/
 
         input.forEach(a => {
             /*let datas = ""*/
-
             a.addEventListener("blur", () => {
-                console.log(a.value.length);
+                /*console.log(a.value.length);*/
                 if (a.value.length <= 0) {
                      /*datas = */
-                    alert2.forEach(b => b.textContent = "本欄不可空白" )
+                    alert2.forEach(b => b.textContent = "本欄不可空白")
                 }
-
-
             })
         })
     </script>

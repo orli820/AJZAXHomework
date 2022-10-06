@@ -26,12 +26,22 @@ namespace AJZAXHomework.Controllers
             var exists = _context.Members.Any(n => n.Name == name);
             return Content(exists.ToString(), "text/plain");
         }
-       
-    //    public IActionResult test(){
-    //        if (input == "")
-    //            return "本欄不可空白";
-    //        return View();
-    //}
-        
+
+        public IActionResult city( )
+        {
+            var city = _context.Addresses.Select(c => c.City).Distinct();
+            return Json(city);
+        }
+
+        public IActionResult site(string city)
+        {
+            var site = _context.Addresses.Where(s=>s.City==city).Select(c => c.SiteId).Distinct();
+            return Json(site);
+        }
+        public IActionResult road(string site)
+        {
+            var road = _context.Addresses.Where(s => s.SiteId == site).Select(c => c.Road).Distinct();
+            return Json(road);
+        }
     }
 }

@@ -44,5 +44,10 @@ namespace AJZAXHomework.Controllers
         {
             return View();
         }
+
+        public IActionResult city()
+        {
+            return View();
+        }
     }
 }
