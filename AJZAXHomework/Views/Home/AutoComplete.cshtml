@@ -23,7 +23,33 @@
 </div>
 
 
-@section Script{ 
+@section Scripts{ 
+    <script>
+        const input = document.querySelector("#autoComplet")
+        const listData = document.querySelector(".list-group")
 
+        listData.style.display = "none"
+        input.addEventListener("input", async() => {
+            const keyword = input.value;
+            listData.style.display = "block"
+            let response = await fetch("@Url.Content("~/api/search")" + `?keyword=${keyword}`);
+            let datas = response.json();
+            //console.log(datas)
+            let htmlData = datas.map(data => {
+                return (
+                    `
+                <button type="button" onclick="read(event)" class="list-group-item list-group-item-action">${data}</button>
+                `)
+            })
+            listData.innerHTML = htmlData.join("");
+
+        })
+
+        function read(event) {
+            input.value = event.target.textcontent;
+            listData.style.display = "none";
+        }
+
+    </script>
 
 }

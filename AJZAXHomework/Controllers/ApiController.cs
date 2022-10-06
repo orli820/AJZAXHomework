@@ -10,10 +10,12 @@ namespace AJZAXHomework.Controllers
     public class ApiController : Controller
     {
         private readonly DemoContext _context;
+        private readonly NorthwindContext _Ncontext;
 
-        public ApiController (DemoContext context)
+        public ApiController (DemoContext context,NorthwindContext Ncontext)
         {
             _context = context;
+            _Ncontext = Ncontext;
         }
 
         public IActionResult Index()
@@ -42,6 +44,12 @@ namespace AJZAXHomework.Controllers
         {
             var road = _context.Addresses.Where(s => s.SiteId == site).Select(c => c.Road).Distinct();
             return Json(road);
+        }
+
+        public IActionResult search(string keyword)
+        {
+            var key = _Ncontext.Products.Where(p => p.ProductName.Contains(keyword)).Select(p => p.ProductName);
+            return Json(key);
         }
     }
 }
