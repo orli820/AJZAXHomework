@@ -11,15 +11,17 @@
             <div class="form-group">
                 <label for="InputName">姓名</label>
                 <input type="text" class="form-control" id="InputName" name="Name">
-                <small id="emailHelp" class="form-text text-muted"></small>
+                <small id="nameHelp" class="form-text text-muted"></small>
             </div>
             <div class="form-group">
                 <label for="InputEmail">電子郵件</label>
                 <input type="email" class="form-control" id="InputEmail" name="Email">
+                <small id="emailHelp" class="form-text text-muted"></small>
             </div>
             <div class="form-group">
                 <label for="InputAge">年紀</label>
                 <input type="number" class="form-control" id="InputAge" name="Age">
+                <small id="ageHelp" class="form-text text-muted"></small>
             </div>
             <div class="form-group">
                 <label for="InputFile">選擇檔案</label>
@@ -33,25 +35,64 @@
     <div class="col-3"></div>
 </div>
 
-@section Scripts{ 
-<script>
+@section Scripts{
+    <script>
     const name = document.querySelector("#InputName");
-    const message = document.querySelector("#emailHelp")
+    const message = document.querySelector("#nameHelp")
+    const form = document.querySelector("#userInfo")
+    const inName = document.querySelector("#InputName")
+    const inEmail = document.querySelector("#InputEmail")
+    const inAge = document.querySelector("#InputAge")
+    const input = document.querySelectorAll(".form-control")
+    const alert = document.querySelector("#form-group")
+    const alert2 = document.querySelectorAll(".form-text")
+
+
 
     name.addEventListener("blur", async () => {
         let response = await fetch("@Url.Content("/api/checkname")" + `?name=${name.value}`)
         let data = await response.text()
         console.log(data)
-        if (data=="True") 
-           data="該帳號已存在"       
+        if (data=="True")
+           data="該帳號已存在"
         else
             data="該帳號可使用"
-           
+
         message.textContent = data
     })
-    
-    
+    /*let a = "";*/
+    //function test() {
+    //    if (input == "")
+    //        return "本欄不可空白"
+    //}
+    //input.forEach(a => {
+    //    let datas=""
+    //    a.addEventListener("blur", () => {
+    //        //let respones = await fetch(test())
+    //        //let data = await respones.text()
+    //        if (input == "") {
+    //            datas = "本欄不可空白"
+    //            alert2.forEach(b => b.textContent = datas)
+    //        }
+    //    })
 
-</script>
+    //})
+    console.log(input.length)
+
+
+        input.forEach(a => {
+            /*let datas = ""*/
+
+            a.addEventListener("blur", () => {
+                console.log(a.value.length);
+                if (a.value.length <= 0) {
+                     /*datas = */
+                    alert2.forEach(b => b.textContent = "本欄不可空白" )
+                }
+
+
+            })
+        })
+    </script>
 
 }

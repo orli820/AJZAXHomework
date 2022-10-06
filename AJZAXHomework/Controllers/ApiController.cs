@@ -27,5 +27,11 @@ namespace AJZAXHomework.Controllers
             return Content(exists.ToString(), "text/plain");
         }
        
+    //    public IActionResult test(){
+    //        if (input == "")
+    //            return "本欄不可空白";
+    //        return View();
+    //}
+        
     }
 }
