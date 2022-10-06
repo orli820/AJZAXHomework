@@ -49,5 +49,10 @@ namespace AJZAXHomework.Controllers
         {
             return View();
         }
+
+        public IActionResult AutoComplete()
+        {
+            return View();
+        }
     }
 }
