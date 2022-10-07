@@ -9,20 +9,20 @@
 <select id="sel2"></select>
 <select id="sel3"></select>
 
-@section Scripts{ 
+@section Scripts{
     <script>
     const sel1 = document.querySelector("#sel1")
     const sel2 = document.querySelector("#sel2")
     const sel3 = document.querySelector("#sel3")
     const all = [sel1, sel2, sel3]
-
-    async function theCity() {
+         async function theCity() {
         let response = await fetch("@Url.Content("~/api/city")")
         let data = await response.json()
         data.forEach(city => {
             const opt =new Option(city, city)
             sel1.options.add(opt)
         })
+
     }
 
 
@@ -51,6 +51,22 @@
         })
 
     theCity();
+        //還要修正  一進入畫面就載入三個  目前只載入一個
+
+        //建立下拉式選單(師寫法)
+         async function theCity(datas) {
+             data.forEach(city => {
+                 const opt = new Option(city, city)
+                 datas.options.add(opt)
+             })
+        }
+        async function theSite(datas) {
+            data.forEach(site => {
+                const opt = new Option(site, site)
+                datas.options.add(opt)
+            })
+        }
+        //改良成重複性低的寫法
 
     </script>
 }

@@ -54,5 +54,10 @@ namespace AJZAXHomework.Controllers
         {
             return View();
         }
+
+        public IActionResult d()
+        {
+            return View();
+        }
     }
 }
